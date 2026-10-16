@@ -16,29 +16,93 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
+transition:background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+:root{
+--bg:#f5f7fb;
+--header-bg:#fff;
+--shadow:0 2px 8px rgba(0,0,0,.1);
+--logo-color:#0b1f67;
+--brand:#2563eb;
+--text:#222;
+--text-secondary:#555;
+--card-bg:#fff;
+--card-shadow:0 2px 10px rgba(0,0,0,.1);
+--input-bg:#fff;
+--input-border:#ddd;
+--input-text:#222;
+--footer-bg:#0b1f67;
+--color-scheme:light;
+}
+
+[data-theme="dark"]{
+--bg:#0f172a;
+--header-bg:#151d2e;
+--shadow:0 2px 8px rgba(0,0,0,.5);
+--logo-color:#93c5fd;
+--brand:#3b82f6;
+--text:#e2e8f0;
+--text-secondary:#94a3b8;
+--card-bg:#1e293b;
+--card-shadow:0 2px 10px rgba(0,0,0,.5);
+--input-bg:#0f172a;
+--input-border:#334155;
+--input-text:#e2e8f0;
+--footer-bg:#0b1f67;
+--color-scheme:dark;
 }
 
 body{
-background:#f5f7fb;
+background:var(--bg);
+color:var(--text);
+transition:background-color .3s ease, color .3s ease;
 }
 
 header{
-background:#fff;
+background:var(--header-bg);
 padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
+box-shadow:var(--shadow);
+transition:background-color .3s ease, box-shadow .3s ease;
 }
 
 .logo{
 font-size:28px;
 font-weight:bold;
-color:#0b1f67;
+color:var(--logo-color);
 }
 
 .logo span{
-color:#2563eb;
+color:var(--brand);
+}
+
+.header-actions{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.theme-btn{
+background:transparent;
+border:2px solid var(--brand);
+color:var(--brand);
+font-size:16px;
+width:42px;
+height:42px;
+border-radius:50%;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+
+.theme-btn:hover{
+background:var(--brand);
+color:white;
 }
 
 nav ul{
@@ -49,17 +113,19 @@ gap:25px;
 
 nav a{
 text-decoration:none;
-color:#222;
+color:var(--text);
 font-weight:500;
+transition:color .3s ease;
 }
 
 .login-btn{
-background:#2563eb;
+background:var(--brand);
 color:white;
 border:none;
 padding:10px 22px;
 border-radius:25px;
 cursor:pointer;
+transition:background-color .3s ease;
 }
 
 .page{
@@ -80,34 +146,41 @@ gap:40px;
 
 .hero-text h1{
 font-size:60px;
-color:#0b1f67;
+color:var(--logo-color);
 margin-bottom:20px;
 }
 
 .hero-text p{
 font-size:20px;
 margin-bottom:25px;
-color:#555;
+color:var(--text-secondary);
 }
 
 .search{
 display:flex;
-background:white;
+background:var(--input-bg);
 border-radius:10px;
 overflow:hidden;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
+box-shadow:var(--shadow);
 }
 
 .search input{
 flex:1;
 padding:15px;
 border:none;
+background:var(--input-bg);
+color:var(--input-text);
+transition:background-color .3s ease, color .3s ease, box-shadow .3s ease;
+}
+
+.search input::placeholder{
+color:#94a3b8;
 }
 
 .search button{
 width:70px;
 border:none;
-background:#2563eb;
+background:var(--brand);
 color:white;
 font-size:20px;
 }
@@ -119,11 +192,11 @@ margin-top:30px;
 }
 
 .card{
-background:white;
+background:var(--card-bg);
 padding:20px;
 border-radius:15px;
 flex:1;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
+box-shadow:var(--card-shadow);
 }
 
 .livros{
@@ -134,11 +207,11 @@ margin-top:30px;
 }
 
 .livro{
-background:white;
+background:var(--card-bg);
 padding:15px;
 border-radius:15px;
 text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
+box-shadow:var(--card-shadow);
 }
 
 .livro img{
@@ -152,7 +225,7 @@ border-radius:10px;
 margin-top:10px;
 padding:10px;
 width:100%;
-background:#2563eb;
+background:var(--brand);
 color:white;
 border:none;
 border-radius:10px;
@@ -162,10 +235,10 @@ cursor:pointer;
 .form{
 max-width:500px;
 margin:auto;
-background:white;
+background:var(--card-bg);
 padding:30px;
 border-radius:20px;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
+box-shadow:var(--card-shadow);
 }
 
 .form h2{
@@ -176,14 +249,20 @@ margin-bottom:20px;
 width:100%;
 padding:12px;
 margin-bottom:15px;
-border:1px solid #ddd;
+border:1px solid var(--input-border);
 border-radius:8px;
+background:var(--input-bg);
+color:var(--input-text);
+}
+
+.form input::placeholder{
+color:#94a3b8;
 }
 
 .form button{
 width:100%;
 padding:12px;
-background:#2563eb;
+background:var(--brand);
 color:white;
 border:none;
 border-radius:8px;
@@ -191,7 +270,7 @@ border-radius:8px;
 
 footer{
 margin-top:50px;
-background:#0b1f67;
+background:var(--footer-bg);
 color:white;
 text-align:center;
 padding:25px;
@@ -216,10 +295,17 @@ padding:25px;
 </ul>
 </nav>
 
+<div class="header-actions">
 <button class="login-btn"
 onclick="mostrar('login')">
 Entrar
 </button>
+
+<button class="theme-btn" id="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema">
+<i class="fas fa-moon" id="theme-icon"></i>
+</button>
+
+</div>
 
 </header>
 
@@ -401,6 +487,55 @@ document.getElementById(id)
 
 }
 
+function toggleTheme(){
+
+const html = document.documentElement;
+
+const temaAtual = html.getAttribute('data-theme');
+
+const novoTema = temaAtual === 'dark' ? 'light' : 'dark';
+
+html.setAttribute('data-theme', novoTema);
+
+localStorage.setItem('tema', novoTema);
+
+atualizarIcone();
+
+}
+
+function atualizarIcone(){
+
+const html = document.documentElement;
+
+const isDark = html.getAttribute('data-theme') === 'dark';
+
+const icon = document.getElementById('theme-icon');
+
+if(icon){
+icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+}
+
+}
+
+const temaSalvo = localStorage.getItem('tema');
+
+const temaPreferido = window.matchMedia &&
+window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+const tema = temaSalvo || (temaPreferido ? 'dark' : 'light');
+
+document.documentElement.setAttribute('data-theme', tema);
+
+atualizarIcone();
+
+window.matchMedia('(prefers-color-scheme: dark)')
+.addEventListener('change', e => {
+if(!localStorage.getItem('tema')){
+document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+atualizarIcone();
+}
+});
+
 // URL do Apps Script
 const URL =
 "https://script.google.com/macros/s/AKfycbzngASYf-5NnHhI42OxKhUT1g9JpK1npfXlKVixwGmU4WtG4maaNnIXSC2xj7MxVWhx/exec";
@@ -415,6 +550,7 @@ document.getElementById("catalogo-livros");
 dados.slice(1).forEach((livro) => {
 
 catalogo.innerHTML += `
+
 <div class="livro">
 <h3>${livro[0]}</h3>
 <p><strong>Autor:</strong> ${livro[3]}</p>
@@ -427,6 +563,7 @@ catalogo.innerHTML += `
 });
 
 })
+
 .catch(error=>{
 console.log(error);
 });
